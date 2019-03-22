@@ -33,12 +33,16 @@ class MovieTable extends Component {
   componentDidMount() {
     this.changePage(this.state.page)
   }
+  // TODO do like here
+  getMovieForModal() {
+    return this.state.movies.find(movie => movie.id === this.state.modalId)
+  }
   render() {
     return (
       <div className="movie-table">
         <div className="movie-table__grid">
           {
-            this.state.movies && this.state.movies.length
+            this.state.movies.length
               ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.id}/>)
               : <div className="movie-table__not-found">Movies not found</div>
           }
@@ -46,7 +50,8 @@ class MovieTable extends Component {
         <Pagination changePage={this.changePage} page={this.state.page}/>
         {
           this.state.modalId &&
-          <MovieModal openModal={this.openModal} movie={this.state.movies.find(movie => movie.id === this.state.modalId)}/>
+          // TODO do like here
+          <MovieModal openModal={this.openModal} movie={this.getMovieForModal()}/>
         }
       </div>
     )
