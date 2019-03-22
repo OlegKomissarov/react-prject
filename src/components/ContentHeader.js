@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class ContentHeader extends Component {
   render() {
@@ -6,8 +6,8 @@ class ContentHeader extends Component {
       <div className="content-header">
         Latest Releases
       </div>
-    );
+    )
   }
 }
 
-export default ContentHeader;
+export default ContentHeader

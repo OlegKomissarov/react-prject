@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Logo from './Logo';
-import Button from './Button';
+import Logo from './Logo'
+import Button from './Button'
 
 class AppHeader extends Component {
   render() {
@@ -13,8 +13,8 @@ class AppHeader extends Component {
           <Button text="My account" white/>
         </a>
       </div>
-    );
+    )
   }
 }
 
-export default AppHeader;
+export default AppHeader

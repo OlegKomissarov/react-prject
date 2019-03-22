@@ -14,13 +14,17 @@ class MovieBrick extends Component {
       }
     }
   }
+  componentWillUnmount() {
+    document.onkeydown = null
+  }
   render() {
+    const { movie } = this.props
     return (
       <div className="movie-modal">
         <img className="movie-modal__image"
-             src={getPicture(this.props.movie)}
+             src={getPicture(movie)}
              alt="Not found pic"
-             title={this.props.movie.original_title}
+             title={movie.original_title}
         />
       </div>
     )

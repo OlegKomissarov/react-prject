@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Logo extends Component {
   render() {
@@ -9,8 +9,8 @@ class Logo extends Component {
           Movies
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Logo;
+export default Logo

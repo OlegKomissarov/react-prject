@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import ContentHeader from './ContentHeader';
-import MovieTable from './MovieTable';
+import ContentHeader from './ContentHeader'
+import MovieTable from './MovieTable'
 
 class MainContent extends Component {
   render() {
@@ -10,8 +10,8 @@ class MainContent extends Component {
         <ContentHeader/>
         <MovieTable/>
       </div>
-    );
+    )
   }
 }
 
-export default MainContent;
+export default MainContent

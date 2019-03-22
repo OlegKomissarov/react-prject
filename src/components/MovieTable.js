@@ -6,8 +6,6 @@ import MovieBrick from './MovieBrick'
 import Pagination from './Pagination'
 import MovieModal from './MovieModal'
 
-const url = config.moviesUrl
-
 class MovieTable extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +20,7 @@ class MovieTable extends Component {
   changePage(page) {
     this.setState({page})
     // TODO: Add isLoading
-    axios.get(url + '&page=' + page)
+    axios.get(config.moviesUrl + '&page=' + page)
       .then(movies => {
         this.setState({ movies: movies.data.results })
       })
@@ -33,7 +31,6 @@ class MovieTable extends Component {
   componentDidMount() {
     this.changePage(this.state.page)
   }
-  // TODO do like here
   getMovieForModal() {
     return this.state.movies.find(movie => movie.id === this.state.modalId)
   }
@@ -50,7 +47,6 @@ class MovieTable extends Component {
         <Pagination changePage={this.changePage} page={this.state.page}/>
         {
           this.state.modalId &&
-          // TODO do like here
           <MovieModal openModal={this.openModal} movie={this.getMovieForModal()}/>
         }
       </div>

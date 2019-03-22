@@ -7,12 +7,13 @@ class MovieBrick extends Component {
     this.props.openModal(this.props.movie.id)
   }
   render() {
+    const { movie } = this.props
     return (
       <div onClick={this.openModal} className="movie-brick">
         <img className="movie-brick__image"
-             src={getPicture(this.props.movie)}
+             src={getPicture(movie)}
              alt="Not found pic"
-             title={this.props.movie.original_title}
+             title={movie.original_title}
         />
       </div>
     )
