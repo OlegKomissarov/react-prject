@@ -7,8 +7,8 @@ class Layout extends Component {
   render() {
     return (
       <div className="layout">
-        <AppHeader></AppHeader>
-        <MainContent></MainContent>
+        <AppHeader/>
+        <MainContent/>
       </div>
     );
   }

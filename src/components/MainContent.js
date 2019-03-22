@@ -7,8 +7,8 @@ class MainContent extends Component {
   render() {
     return (
       <div className="main-content">
-        <ContentHeader></ContentHeader>
-        <MovieTable></MovieTable>
+        <ContentHeader/>
+        <MovieTable/>
       </div>
     );
   }
