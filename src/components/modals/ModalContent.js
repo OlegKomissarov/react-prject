@@ -1,27 +1,39 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import api from '../../api/localStorage'
 
-import Button from './Button'
+import Button from '../elements/Button'
 
 class ModalContent extends Component {
-  addFavourite = () => {
-    let favouriteMovies = ModalContent.getFavourites()
-    if (!favouriteMovies || !(favouriteMovies instanceof Array)) {
-      favouriteMovies = []
-    }
-    favouriteMovies.push(this.props.movie)
-    localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies))
+  // componentDidMount() {
+  //   let favouriteMovie = api.getFavourite(this.props.movie.id)
+  //   if (favouriteMovie) {
+  //     this.setState({ isFavourite: true })
+  //   }
+  // }
+  // Как сделать этот state? Его нельзя обновлять на обновление пропсов, потому что это тип зацикливание.
+  // Но тогда как обновить состояние? Погуглить, там еще redux юзать надо, мб он чем-то поможет.
+  state = {
+    isFavourite: this.props.movie.favourite
   }
-  // TODO: Make like api util
-  static getFavourites() {
-    return JSON.parse(localStorage.getItem('favouriteMovies'))
+  changeFavourite = () => {
+    if (this.props.movie.favourite) {
+      api.removeFavourite(this.props.movie.id)
+      this.setState({ isFavourite: false })
+    } else {
+      api.setFavourite(this.props.movie)
+      this.setState({ isFavourite: true })
+    }
+  }
+  getChangeFavouriteButtonText() {
+    return this.props.movie.favourite ? 'Unfavourite' : 'Add to favourite'
   }
   render() {
     const { movie } = this.props
     return (
       <div className="modal-content">
-        <Button onClick={this.addFavourite}
-                text="Add to favourite"
+        <Button onClick={this.changeFavourite}
+                text={this.getChangeFavouriteButtonText()}
                 white
                 className="modal-content__button"
         />

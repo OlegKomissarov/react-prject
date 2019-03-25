@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 
 import Logo from './Logo'
 import Button from './Button'
+import { Link } from 'react-router-dom'
 
 class AppHeader extends Component {
   render() {
     return (
       <div className="app-header">
         <Logo/>
-        {/*TODO: Make router and change this*/}
-        <a href="http://localhost:3000/">
+        <Link to="/favourites">
           <Button text="My account" white/>
-        </a>
+        </Link>
       </div>
     )
   }

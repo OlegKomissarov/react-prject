@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Button from './Button'
+import Button from '../elements/Button'
 
 class ModalButtons extends Component {
   closeModal = () => {

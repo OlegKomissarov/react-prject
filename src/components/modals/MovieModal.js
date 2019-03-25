@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 
-import { getPicture } from '../utils'
+import { getPicture } from '../../utils'
 
 import ModalButtons from './ModalButtons'
 import ModalContent from './ModalContent'
 
 class MovieModal extends Component {
-  openModal = value => {
-    this.props.openModal(value)
-  }
   componentDidMount() {
     document.onkeydown = event => {
       event = event || window.event
@@ -16,6 +13,9 @@ class MovieModal extends Component {
         this.openModal(null)
       }
     }
+  }
+  openModal = value => {
+    this.props.openModal(value)
   }
   componentWillUnmount() {
     document.onkeydown = null

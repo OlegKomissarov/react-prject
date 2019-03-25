@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { getPicture } from '../utils'
+import { getPicture } from '../../utils'
 
 class MovieBrick extends Component {
   openModal = () => {

@@ -80,6 +80,14 @@ a {
   background-color: $color-grey-200;
   min-height: 100vh;
   min-width: 100vw;
+  &__content {
+    padding: $space-x-large;
+    padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-x-large});
+    @include media-breakpoint-up($md) {
+      padding: $space-xxx-large;
+      padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-xxx-large});
+    }
+  }
 }
 
 .app-header {
@@ -120,14 +128,6 @@ a {
   }
 }
 
-.main-content {
-  padding: $space-x-large;
-  padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-x-large});
-  @include media-breakpoint-up($md) {
-    padding: $space-xxx-large;
-    padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-xxx-large});
-  }
-}
 
 .content-header {
   color: $color-grey-400;

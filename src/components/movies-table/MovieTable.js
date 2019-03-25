@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import config from '../config'
+import config from '../../config'
 
 import MovieBrick from './MovieBrick'
 import Pagination from './Pagination'
-import MovieModal from './MovieModal'
+import MovieModal from '../modals/MovieModal'
+import api from "../../api/localStorage"
 
 class MovieTable extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class MovieTable extends Component {
       return false
     })
     movie.nextMovieId = nextMovieId
+    movie.favourite = !!api.getFavourite(movie.id)
     return movie
   }
   getMovieBricks() {
