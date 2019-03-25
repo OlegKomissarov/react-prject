@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 
 import { getPicture } from '../utils'
 
-class MovieBrick extends Component {
-  openModal() {
-    this.props.openModal(null)
+import ModalButtons from './ModalButtons'
+import ModalContent from './ModalContent'
+
+class MovieModal extends Component {
+  openModal = value => {
+    this.props.openModal(value)
   }
   componentDidMount() {
     document.onkeydown = event => {
       event = event || window.event
       if (event.key === 'Escape' || event.code === 'Escape') {
-        this.openModal()
+        this.openModal(null)
       }
     }
   }
@@ -21,14 +24,18 @@ class MovieBrick extends Component {
     const { movie } = this.props
     return (
       <div className="movie-modal">
-        <img className="movie-modal__image"
-             src={getPicture(movie)}
-             alt="Not found pic"
-             title={movie.original_title}
-        />
+        <ModalButtons openModal={this.openModal} movie={movie}/>
+        <div className="movie-modal__container">
+          <img className="movie-modal__image"
+               src={getPicture(movie)}
+               alt="Not found pic"
+               title={movie.original_title}
+          />
+          <ModalContent movie={movie} className="movie-modal__content"/>
+        </div>
       </div>
     )
   }
 }
 
-export default MovieBrick
+export default MovieModal

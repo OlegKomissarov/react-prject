@@ -1,9 +1,11 @@
 export function getPicture(movie) {
+  const imageLink = 'https://image.tmdb.org/t/p/w500/'
+  const noImagePicture = 'no-pic.png'
   if (movie.poster_path && movie.poster_path.length) {
-    return 'https://image.tmdb.org/t/p/w500/' + movie.poster_path
+    return imageLink + movie.poster_path
   }
   if (movie.backdrop_path && movie.backdrop_path.length) {
-    return 'https://image.tmdb.org/t/p/w500/' + movie.backdrop_path
+    return imageLink + movie.backdrop_path
   }
-  return 'no-pic.png'
+  return noImagePicture
 }

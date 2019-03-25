@@ -14,10 +14,11 @@ class MovieTable extends Component {
       page: 1,
       modalId: null
     }
-    this.changePage = this.changePage.bind(this)
-    this.openModal = this.openModal.bind(this)
   }
-  changePage(page) {
+  componentDidMount() {
+    this.changePage(this.state.page)
+  }
+  changePage = page => {
     this.setState({page})
     // TODO: Add isLoading
     axios.get(config.moviesUrl + '&page=' + page)
@@ -25,24 +26,35 @@ class MovieTable extends Component {
         this.setState({ movies: movies.data.results })
       })
   }
-  openModal(modalId) {
+  openModal = modalId => {
     this.setState({modalId})
   }
-  componentDidMount() {
-    this.changePage(this.state.page)
-  }
   getMovieForModal() {
-    return this.state.movies.find(movie => movie.id === this.state.modalId)
+    let nextMovieId = null
+    let movie = this.state.movies.find((movie, index) => {
+      if (movie.id === this.state.modalId) {
+        if (this.state.movies[index + 1]) {
+          nextMovieId = this.state.movies[index + 1].id
+        } else {
+          nextMovieId = this.state.movies[0].id
+        }
+        return true
+      }
+      return false
+    })
+    movie.nextMovieId = nextMovieId
+    return movie
+  }
+  getMovieBricks() {
+    return this.state.movies.length
+      ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.id}/>)
+      : <div className="movie-table__not-found">Movies not found</div>
   }
   render() {
     return (
       <div className="movie-table">
         <div className="movie-table__grid">
-          {
-            this.state.movies.length
-              ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.id}/>)
-              : <div className="movie-table__not-found">Movies not found</div>
-          }
+          {this.getMovieBricks()}
         </div>
         <Pagination changePage={this.changePage} page={this.state.page}/>
         {
