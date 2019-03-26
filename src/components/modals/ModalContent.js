@@ -5,6 +5,7 @@ import api from '../../api/localStorage'
 import Button from '../elements/Button'
 
 class ModalContent extends Component {
+  // TODO: Use redux here
   state = {
     isFavourite: this.props.movie.favourite
   }
