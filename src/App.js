@@ -8,7 +8,6 @@ import FavouritesListLayout from './components/layout/FavouritesListLayout'
 
 // TODO: add switch
 class App extends Component {
-
   render() {
     return (
       <div className="app">

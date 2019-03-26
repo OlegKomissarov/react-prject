@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import { getPicture } from '../../utils'
-
 import ModalButtons from './ModalButtons'
 import ModalContent from './ModalContent'
 
@@ -25,14 +23,7 @@ class MovieModal extends Component {
     return (
       <div className="movie-modal">
         <ModalButtons openModal={this.openModal} movie={movie}/>
-        <div className="movie-modal__container">
-          <img className="movie-modal__image"
-               src={getPicture(movie)}
-               alt="Not found pic"
-               title={movie.original_title}
-          />
-          <ModalContent movie={movie} className="movie-modal__content"/>
-        </div>
+        <ModalContent movie={movie} className="movie-modal__content"/>
       </div>
     )
   }

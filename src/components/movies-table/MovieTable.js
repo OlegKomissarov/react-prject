@@ -50,7 +50,7 @@ class MovieTable extends Component {
   getMovieBricks() {
     return this.state.movies.length
       ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.id}/>)
-      : <div className="movie-table__not-found">Movies not found</div>
+      : <div className="content-not-found">Movies not found</div>
   }
   render() {
     return (
