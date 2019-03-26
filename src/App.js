@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './style/main.scss'
 
 import AppHeader from './components/elements/AppHeader'
@@ -19,9 +20,16 @@ class App extends Component {
             <Route path="/favourites" component={FavouritesListLayout} />
           </Route>
         </BrowserRouter>
+        {this.props.user.name}
       </div>
     )
   }
 }
 
-export default App
+const mapStateToProps = store => {
+  return {
+    user: store.user
+  }
+}
+
+export default connect(mapStateToProps)(App)

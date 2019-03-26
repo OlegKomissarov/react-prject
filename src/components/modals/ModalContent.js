@@ -5,14 +5,6 @@ import api from '../../api/localStorage'
 import Button from '../elements/Button'
 
 class ModalContent extends Component {
-  // componentDidMount() {
-  //   let favouriteMovie = api.getFavourite(this.props.movie.id)
-  //   if (favouriteMovie) {
-  //     this.setState({ isFavourite: true })
-  //   }
-  // }
-  // Как сделать этот state? Его нельзя обновлять на обновление пропсов, потому что это тип зацикливание.
-  // Но тогда как обновить состояние? Погуглить, там еще redux юзать надо, мб он чем-то поможет.
   state = {
     isFavourite: this.props.movie.favourite
   }
