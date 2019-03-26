@@ -6,7 +6,7 @@ import FavouritesList from '../favourites-list/FavouritesList'
 class FavouritesListLayout extends Component {
   render() {
     return (
-      <div className="layout__content">
+      <div className="layout">
         <ContentHeader text="My favourite"/>
         <FavouritesList/>
       </div>

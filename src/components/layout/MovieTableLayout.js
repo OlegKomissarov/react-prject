@@ -6,7 +6,7 @@ import MovieTable from '../movies-table/MovieTable'
 class MovieTableLayout extends Component {
   render() {
     return (
-      <div className="layout__content">
+      <div className="layout">
         <ContentHeader text="Latest Releases"/>
         <MovieTable/>
       </div>

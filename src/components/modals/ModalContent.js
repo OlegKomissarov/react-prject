@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import moment from 'moment'
 import api from '../../api/localStorage'
 
 import Button from '../elements/Button'
+import { setFavouriteMovie } from '../../actions/favouritesActions'
 
 class ModalContent extends Component {
-  // TODO: Use redux here
-  state = {
-    isFavourite: this.props.movie.favourite
-  }
   changeFavourite = () => {
+    console.log(this.props.setFavouriteMovieAction)
+    this.props.setFavouriteMovieAction(this.props.movie)
     if (this.props.movie.favourite) {
       api.removeFavourite(this.props.movie.id)
-      this.setState({ isFavourite: false })
     } else {
       api.setFavourite(this.props.movie)
-      this.setState({ isFavourite: true })
     }
   }
   getChangeFavouriteButtonText() {
@@ -58,4 +56,12 @@ class ModalContent extends Component {
   }
 }
 
-export default ModalContent
+const mapStateToProps = store => ({
+  favouriteMovie: store.favouriteMovie
+})
+
+const mapDispatchToProps = dispatch => ({
+  setFavouriteMovieAction: movie => dispatch(setFavouriteMovie(movie))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalContent)

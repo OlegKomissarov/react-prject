@@ -67,26 +67,19 @@ $logo-size: 40px;
   }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
 a {
   text-decoration: none;
 }
 
 .layout {
-  background-color: $color-grey-200;
   min-height: 100vh;
-  min-width: 100vw;
-  &__content {
-    padding: $space-x-large;
-    padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-x-large});
-    @include media-breakpoint-up($md) {
-      padding: $space-xxx-large;
-      padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-xxx-large});
-    }
+  box-sizing: border-box;
+  background-color: $color-grey-200;
+  padding: $space-x-large;
+  padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-x-large});
+  @include media-breakpoint-up($md) {
+    padding: $space-xxx-large;
+    padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-xxx-large});
   }
 }
 

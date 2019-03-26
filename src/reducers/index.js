@@ -1,9 +1,8 @@
-export const initialState = {
-  user: {
-    name: 'Oleg'
-  }
-}
+import { combineReducers } from 'redux'
+import { favouriteMovieReducer } from './favouriteMovie'
+import { userReducer } from './user'
 
-export function rootReducer(state = initialState) {
-  return state
-}
+export const rootReducer = combineReducers({
+  favouriteMovie: favouriteMovieReducer,
+  user: userReducer
+})

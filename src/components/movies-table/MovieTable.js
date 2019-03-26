@@ -5,7 +5,7 @@ import config from '../../config'
 import MovieBrick from './MovieBrick'
 import Pagination from './Pagination'
 import MovieModal from '../modals/MovieModal'
-import api from "../../api/localStorage"
+import api from '../../api/localStorage'
 
 class MovieTable extends Component {
   constructor(props) {
