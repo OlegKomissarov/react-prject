@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import moment from 'moment'
 import api from '../../api/localStorage'
 
 import Button from '../elements/Button'
 import { setFavouriteMovie } from '../../actions/favouritesActions'
 import { getPicture } from '../../utils'
+console.log(setFavouriteMovie)
 
 class ModalContent extends Component {
   // TODO: use Redux.
   // TODO: set "overflow: hidden" to .layout to prevent scroll of back content when modal is active via Redux.
   // TODO: Close modal by clicking on logo if opened via Redux.
+  componentDidMount() {
+  }
+
   changeFavourite = () => {
 
-    // console.log(this.props.setFavouriteMovieAction)
-    // this.props.setFavouriteMovieAction(this.props.movie)
+    console.log(this.props.setFavouriteMovieAction)
+    this.props.setFavouriteMovieAction(this.props.movie)
 
-    if (this.psrops.movie.favourite) {
+    if (this.props.movie.favourite) {
       api.removeFavourite(this.props.movie.id)
     } else {
       api.setFavourite(this.props.movie)
@@ -104,7 +109,8 @@ const mapStateToProps = store => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setFavouriteMovieAction: movie => dispatch(setFavouriteMovie(movie))
+  setFavouriteMovieAction: bindActionCreators(setFavouriteMovie, dispatch)
+  // setFavouriteMovieAction: movie => dispatch(setFavouriteMovie(movie))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent)
