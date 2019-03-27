@@ -10,6 +10,8 @@ import Pagination from './Pagination'
 import MovieModal from '../modals/MovieModal'
 import api from '../../api/localStorage'
 
+// TODO: Добавить modalId в Redux, по нажатию на лого обнулять.
+//  Функцию openModal тогда можно не передавать, а просто в каждой компоненте сетить modalId в Redux
 class MovieTable extends Component {
   constructor(props) {
     super(props)

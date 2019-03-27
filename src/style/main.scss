@@ -208,7 +208,8 @@ a {
   }
 }
 
-// TODO: Make modal flexible for mobiles
+// TODO: Set "overflow: hidden" to body tag to prevent scroll of back content when modal is active.
+// TODO: Make modal flexible for mobiles.
 .movie-modal {
   position: fixed;
   overflow: auto;

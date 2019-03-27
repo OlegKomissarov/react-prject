@@ -9,8 +9,6 @@ import { setModalMovie } from '../../actions/modalMovieActions'
 import Button from '../elements/Button'
 
 class ModalContent extends Component {
-  // TODO: set "overflow: hidden" to .layout to prevent scroll of back content when modal is active via Redux.
-  // TODO: Close modal by clicking on logo if opened via Redux.
   changeFavourite = () => {
     if (this.props.movie.favourite) {
       api.removeFavourite(this.props.movie.id)
@@ -34,7 +32,7 @@ class ModalContent extends Component {
     return 'Add to favourite'
   }
   getMovieTitleWithYear() {
-    return this.props.movie.original_title + moment(this.props.movie.release_date).format('YYYY')
+    return `${this.props.movie.original_title} (${moment(this.props.movie.release_date).format('YYYY')})`
   }
   getReleaseDate() {
     return moment(this.props.movie.release_date).format('MMMM DD, YYYY')
