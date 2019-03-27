@@ -1,6 +1,0 @@
-export function setFavouriteMovie(movie) {
-  return {
-    type: 'SET_FAVOURITE_MOVIE',
-    payload: movie
-  }
-}

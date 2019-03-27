@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import ModalButtons from './ModalButtons'
 import ModalContent from './ModalContent'
@@ -29,4 +30,6 @@ class MovieModal extends Component {
   }
 }
 
-export default MovieModal
+const mapStateToProps = store => store.modalMovie
+
+export default connect(mapStateToProps)(MovieModal)

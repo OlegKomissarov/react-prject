@@ -3,41 +3,38 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import moment from 'moment'
 import api from '../../api/localStorage'
+import { getPicture } from '../../utils'
+import { setModalMovie } from '../../actions/modalMovieActions'
 
 import Button from '../elements/Button'
-import { setFavouriteMovie } from '../../actions/favouritesActions'
-import { getPicture } from '../../utils'
-console.log(setFavouriteMovie)
 
 class ModalContent extends Component {
-  // TODO: use Redux.
   // TODO: set "overflow: hidden" to .layout to prevent scroll of back content when modal is active via Redux.
   // TODO: Close modal by clicking on logo if opened via Redux.
-  componentDidMount() {
-  }
-
   changeFavourite = () => {
-
-    console.log(this.props.setFavouriteMovieAction)
-    this.props.setFavouriteMovieAction(this.props.movie)
-
     if (this.props.movie.favourite) {
       api.removeFavourite(this.props.movie.id)
     } else {
       api.setFavourite(this.props.movie)
     }
+    let movie = Object.assign({}, this.props.movie)
+    movie.favourite = !movie.favourite
+    this.props.setModalMovieAction(movie)
   }
-  getChangeFavouriteButtonText() {
+  static getUnfavouriteButtonContent() {
     if (window.innerWidth < 1024) {
-      if (this.props.movie.favourite) {
-        return <img src="star.png" alt="Not found" className="modal-content__star-icon"/>
-      }
       return <img src="star-active.png" alt="Not found" className="modal-content__star-icon"/>
     }
-    return this.props.movie.favourite ? 'Unfavourite' : 'Add to favourite'
+    return 'Unfavourite'
+  }
+  static getAddFavouriteButtonContent() {
+    if (window.innerWidth < 1024) {
+      return <img src="star.png" alt="Not found" className="modal-content__star-icon"/>
+    }
+    return 'Add to favourite'
   }
   getMovieTitleWithYear() {
-    return `${this.props.movie.original_title} (${moment(this.props.movie.release_date).format('YYYY')})`
+    return this.props.movie.original_title + moment(this.props.movie.release_date).format('YYYY')
   }
   getReleaseDate() {
     return moment(this.props.movie.release_date).format('MMMM DD, YYYY')
@@ -53,7 +50,11 @@ class ModalContent extends Component {
         />
         <div className="modal-content">
           <Button onClick={this.changeFavourite}
-                  text={this.getChangeFavouriteButtonText()}
+                  text={
+                    this.props.movie.favourite
+                      ? ModalContent.getUnfavouriteButtonContent()
+                      : ModalContent.getAddFavouriteButtonContent()
+                  }
                   white
                   className="modal-content__button"
           />
@@ -104,13 +105,10 @@ class ModalContent extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  favouriteMovie: store.favouriteMovie
-})
+const mapStateToProps = store => store.modalMovie
 
 const mapDispatchToProps = dispatch => ({
-  setFavouriteMovieAction: bindActionCreators(setFavouriteMovie, dispatch)
-  // setFavouriteMovieAction: movie => dispatch(setFavouriteMovie(movie))
+  setModalMovieAction: bindActionCreators(setModalMovie, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContent)

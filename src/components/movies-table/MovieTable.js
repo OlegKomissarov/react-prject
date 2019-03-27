@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { setModalMovie } from '../../actions/modalMovieActions'
 import config from '../../config'
 
 import MovieBrick from './MovieBrick'
@@ -21,19 +24,22 @@ class MovieTable extends Component {
     this.changePage(this.state.page)
   }
   changePage = page => {
-    this.setState({page, isLoading: true})
+    this.setState({ page, isLoading: true })
     axios.get(config.moviesUrl + '&page=' + page)
       .then(movies => {
         this.setState({ movies: movies.data.results, isLoading: false })
       })
   }
   openModal = modalId => {
-    this.setState({modalId})
+    this.setState({ modalId })
+    if (modalId) {
+      this.getMovieForModal(modalId)
+    }
   }
-  getMovieForModal() {
+  getMovieForModal(modalId) {
     let nextMovieId = null
     let movie = this.state.movies.find((movie, index) => {
-      if (movie.id === this.state.modalId) {
+      if (movie.id === modalId) {
         if (this.state.movies[index + 1]) {
           nextMovieId = this.state.movies[index + 1].id
         } else {
@@ -45,7 +51,7 @@ class MovieTable extends Component {
     })
     movie.nextMovieId = nextMovieId
     movie.favourite = !!api.getFavourite(movie.id)
-    return movie
+    this.props.setModalMovieAction(movie)
   }
   getMovieBricks() {
     return this.state.movies.length
@@ -66,11 +72,17 @@ class MovieTable extends Component {
         }
         {
           this.state.modalId &&
-          <MovieModal openModal={this.openModal} movie={this.getMovieForModal()}/>
+          <MovieModal openModal={this.openModal}/>
         }
       </div>
     )
   }
 }
 
-export default MovieTable
+const mapStateToProps = store => store.modalMovie
+
+const mapDispatchToProps = dispatch => ({
+  setModalMovieAction: bindActionCreators(setModalMovie, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieTable)

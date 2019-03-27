@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
-import { favouriteMovieReducer } from './favouriteMovie'
-import { userReducer } from './user'
+import { modalMovieReducer } from './modalMovie'
 
 export const rootReducer = combineReducers({
-  favouriteMovie: favouriteMovieReducer,
-  user: userReducer
+  modalMovie: modalMovieReducer
 })

@@ -1,10 +1,10 @@
 const initialState = {
-  title: 'Iron man'
+  movie: null
 }
 
-export function favouriteMovieReducer(state = initialState, action) {
+export function modalMovieReducer(state = initialState, action) {
   switch (action.type) {
-    case 'SET_FAVOURITE_MOVIE':
+    case 'SET_MODAL_MOVIE':
       return { ...state, movie: action.payload }
     default:
       return state
