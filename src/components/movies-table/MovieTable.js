@@ -3,6 +3,7 @@ import axios from 'axios'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setModalMovie } from '../../actions/modalMovieActions'
+import { setModalId } from '../../actions/modalMovieActions'
 import config from '../../config'
 
 import MovieBrick from './MovieBrick'
@@ -10,8 +11,6 @@ import Pagination from './Pagination'
 import MovieModal from '../modals/MovieModal'
 import api from '../../api/localStorage'
 
-// TODO: Добавить modalId в Redux, по нажатию на лого обнулять.
-//  Функцию openModal тогда можно не передавать, а просто в каждой компоненте сетить modalId в Redux
 class MovieTable extends Component {
   constructor(props) {
     super(props)
@@ -34,6 +33,7 @@ class MovieTable extends Component {
   }
   openModal = modalId => {
     this.setState({ modalId })
+    this.props.setModalIdAction(modalId)
     if (modalId) {
       this.getMovieForModal(modalId)
     }
@@ -57,6 +57,7 @@ class MovieTable extends Component {
   }
   getMovieBricks() {
     return this.state.movies.length
+      // TODO: Dont send prop openModal, use Redux?
       ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.id}/>)
       : <div className="content-not-found">Movies not found</div>
   }
@@ -73,7 +74,7 @@ class MovieTable extends Component {
           </div>
         }
         {
-          this.state.modalId &&
+          this.props.modalId &&
           <MovieModal openModal={this.openModal}/>
         }
       </div>
@@ -81,10 +82,15 @@ class MovieTable extends Component {
   }
 }
 
-const mapStateToProps = store => store.modalMovie
+const mapStateToProps = store => ({
+  movie: store.modalMovie,
+  // TODO: How to prevent this?
+  modalId: store.modalId.modalId
+})
 
 const mapDispatchToProps = dispatch => ({
-  setModalMovieAction: bindActionCreators(setModalMovie, dispatch)
+  setModalMovieAction: bindActionCreators(setModalMovie, dispatch),
+  setModalIdAction: bindActionCreators(setModalId, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieTable)

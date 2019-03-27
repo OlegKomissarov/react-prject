@@ -14,7 +14,7 @@ class FavouritesList extends Component {
   }
   getMoviesList() {
     return this.state.movies.length
-      ? this.state.movies.map(movie => <MoviePreview movie={movie} key={movie.id}/>)
+      ? this.state.movies.map(movie => <MoviePreview movie={movie} key={movie.id}/>).reverse()
       : <div>No favourite movies</div>
   }
   render() {

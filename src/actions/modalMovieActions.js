@@ -4,3 +4,10 @@ export function setModalMovie(movie) {
     payload: movie
   }
 }
+
+export function setModalId(id) {
+  return {
+    type: 'SET_MODAL_ID',
+    payload: id
+  }
+}

@@ -1,10 +1,20 @@
-const initialState = {
+const initialMovieState = {
   movie: null
 }
 
-export const modalMovieReducer = createReducer(initialState, {
-  ['SET_MODAL_MOVIE']: (state, action) => {
+const initialIdState = {
+  modalId: null
+}
+
+export const modalMovieReducer = createReducer(initialMovieState, {
+  SET_MODAL_MOVIE: (state, action) => {
     return {...state, movie: action.payload}
+  }
+})
+
+export const modalIdReducer = createReducer(initialIdState, {
+  SET_MODAL_ID: (state, action) => {
+    return {...state, modalId: action.payload}
   }
 })
 
