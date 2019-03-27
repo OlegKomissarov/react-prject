@@ -4,7 +4,7 @@ import Button from '../elements/Button'
 import api from "../../api/localStorage"
 
 class MoviePreview extends Component {
-  // TODO: Use Redux to get movie & update it on unfavourite event reactive
+  // TODO: Get movie & update it on unfavourite event reactive via Redux.
   removeFromFavourite = () => {
     api.removeFavourite(this.props.movie.id)
   }

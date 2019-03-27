@@ -12,6 +12,7 @@ $font-size-base: 18px;
 $font-size-large: 24px;
 $font-size-x-large: 32px;
 
+$font-weight-tiny: 300;
 $font-weight-base: 400;
 $font-weight-bold: 500;
 
@@ -206,6 +207,8 @@ a {
     }
   }
 }
+
+// TODO: Make modal flexible for mobiles
 .movie-modal {
   position: fixed;
   overflow: auto;
@@ -220,18 +223,24 @@ a {
     justify-content: center;
     padding-left: $space-x-large;
     padding-right: $space-x-large;
+    padding-bottom: $space-xxx-large;
     @include media-breakpoint-up($md) {
       padding-left: 100px;
       padding-right: 100px;
     }
   }
   &__image {
-    width: 30%;
-    height: 45%;
+    width: 40%;
+    height: 60%;
     border-radius: $border-radius-base;
     box-shadow: 0 0 15px rgba(0,0,0,0.6);
     @include inline-space($space-x-large);
     @include media-breakpoint-up($sm) {
+      width: 30%;
+      height: 45%;
+      @include inline-space($space-xxx-large);
+    }
+    @include media-breakpoint-up($md) {
       width: 20%;
       height: 30%;
       @include inline-space($space-xxx-large);
@@ -261,6 +270,16 @@ a {
     font-size: $font-size-x-large;
     font-weight: $font-weight-bold;
     margin-bottom: $space-large;
+    &--desktop {
+      @include media-breakpoint-down($md) {
+        display: none;
+      }
+    }
+    &--mobile {
+      @include media-breakpoint-up($md) {
+        display: none;
+      }
+    }
   }
   &__data {
     display: flex;
@@ -268,15 +287,40 @@ a {
     font-size: $font-size-large;
     font-weight: $font-weight-bold;
     margin-bottom: $space-xx-large;
+    @include media-breakpoint-down($md) {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+    }
   }
   &__data-elem {
     @include inline-space($space-large);
+    @include media-breakpoint-down($md) {
+      @include stack-space($space-small);
+    }
+  }
+  &__data-elem-label {
+    @include media-breakpoint-down($md) {
+      font-weight: $font-weight-tiny;
+    }
+    @include media-breakpoint-up($md) {
+      display: inline;
+    }
+  }
+  &__data-elem-text {
+    @include media-breakpoint-up($md) {
+      display: inline;
+    }
   }
   &__vertical-divider {
     width: 2px;
     height: 1.5em;
     background-color: $color-grey-800;
     @include inline-space($space-large);
+    @include media-breakpoint-down($md) {
+      display: none;
+    }
   }
   &__divider {
     height: 2px;
