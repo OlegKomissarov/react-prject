@@ -10,6 +10,7 @@ import { getPicture } from '../../utils'
 class ModalContent extends Component {
   // TODO: use Redux.
   // TODO: set "overflow: hidden" to .layout when modal is active via Redux.
+  // TODO: Close modal by clicking on logo if opened. Use Redux.
   changeFavourite = () => {
     // console.log(this.props.setFavouriteMovieAction)
     // this.props.setFavouriteMovieAction(this.props.movie)

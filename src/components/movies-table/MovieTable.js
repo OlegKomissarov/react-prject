@@ -13,18 +13,18 @@ class MovieTable extends Component {
     this.state = {
       movies: [],
       page: 1,
-      modalId: null
+      modalId: null,
+      isLoading: false
     }
   }
   componentDidMount() {
     this.changePage(this.state.page)
   }
   changePage = page => {
-    this.setState({page})
-    // TODO: Add isLoading
+    this.setState({page, isLoading: true})
     axios.get(config.moviesUrl + '&page=' + page)
       .then(movies => {
-        this.setState({ movies: movies.data.results })
+        this.setState({ movies: movies.data.results, isLoading: false })
       })
   }
   openModal = modalId => {
@@ -55,10 +55,15 @@ class MovieTable extends Component {
   render() {
     return (
       <div className="movie-table">
-        <div className="movie-table__grid">
-          {this.getMovieBricks()}
-        </div>
-        <Pagination changePage={this.changePage} page={this.state.page}/>
+        {
+          this.state.isLoading ? 'Loading...' :
+          <div>
+            <div className="movie-table__grid">
+              {this.getMovieBricks()}
+            </div>
+            <Pagination changePage={this.changePage} page={this.state.page}/>
+          </div>
+        }
         {
           this.state.modalId &&
           <MovieModal openModal={this.openModal} movie={this.getMovieForModal()}/>

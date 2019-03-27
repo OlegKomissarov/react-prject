@@ -71,24 +71,31 @@ a {
   text-decoration: none;
 }
 
-// TODO: Add gutter left/right to main content on large screens.
-// TODO: Make static width for modal. And check project layout improvements.
-// TODO: Close modal by clicking on logo if opened. Use Redux.
-
-.layout {
+.app {
   min-height: 100vh;
   box-sizing: border-box;
   background-color: $color-grey-200;
   padding: $space-x-large;
   padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-x-large});
+  display: flex;
+  justify-content: center;
   @include media-breakpoint-up($md) {
     padding: $space-xxx-large;
     padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-xxx-large});
   }
 }
 
+.layout {
+  flex: 1;
+  &--favourite-page {
+    max-width: 1280px;
+  }
+}
+
 .app-header {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -181,7 +188,7 @@ a {
     padding: $space-base;
     color: $color-grey-400;
     cursor: pointer;
-    @include media-breakpoint-between($xs, $sm) {
+    @include media-breakpoint-down($sm) {
       font-size: $font-size-small;
       padding: $space-pre-base;
     }
@@ -234,6 +241,7 @@ a {
 
 .modal-content {
   position: relative;
+  flex: 1;
   &__star-icon {
     width: 1.5em;
     height: 1.5em;

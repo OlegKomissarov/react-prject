@@ -4,22 +4,23 @@ import MoviePreview from './MoviePreview'
 
 class FavouritesList extends Component {
   state = {
-    movies: []
+    movies: [],
+    isLoading: false
   }
-  // TODO: Add isLoading
   componentDidMount() {
+    this.setState({ isLoading: true })
     let movies = api.indexFavourites()
-    this.setState({ movies })
+    this.setState({ movies, isLoading: false })
   }
   getMoviesList() {
     return this.state.movies.length
       ? this.state.movies.map(movie => <MoviePreview movie={movie} key={movie.id}/>)
-      : <div className="content-not-found">No favourite movies</div>
+      : <div>No favourite movies</div>
   }
   render() {
     return (
       <div className="favourites-list">
-        {this.getMoviesList()}
+        {this.state.isLoading ? 'Loading...' : this.getMoviesList()}
       </div>
     )
   }

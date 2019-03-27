@@ -26,7 +26,7 @@ class Pagination extends Component {
             Prev
           </div>
           {
-            page === config.pagesLength &&
+            page === config.pagesLength && config.pagesLength > 2 &&
             <div onClick={this.changePage.bind(this, page - 2)} className="pagination__button">
               ...
             </div>
@@ -49,7 +49,7 @@ class Pagination extends Component {
             </div>
           }
           {
-            page === 1 &&
+            page === 1 && config.pagesLength > 2 &&
             <div onClick={this.changePage.bind(this, page + 2)} className="pagination__button">
               ...
             </div>
