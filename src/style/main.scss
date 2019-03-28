@@ -73,13 +73,13 @@ a {
 }
 
 .app {
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
   box-sizing: border-box;
   background-color: $color-grey-200;
   padding: $space-x-large;
   padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-x-large});
-  display: flex;
-  justify-content: center;
   @include media-breakpoint-up($md) {
     padding: $space-xxx-large;
     padding-top: calc(#{$logo-size} + #{$space-large} * 2 + #{$space-xxx-large});
