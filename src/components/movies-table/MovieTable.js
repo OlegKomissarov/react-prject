@@ -57,7 +57,6 @@ class MovieTable extends Component {
   }
   getMovieBricks() {
     return this.state.movies.length
-      // TODO: Dont send prop openModal, use Redux?
       ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.id}/>)
       : <div className="content-not-found">Movies not found</div>
   }
@@ -83,9 +82,7 @@ class MovieTable extends Component {
 }
 
 const mapStateToProps = store => ({
-  movie: store.modalMovie,
-  // TODO: How to prevent this?
-  modalId: store.modalId.modalId
+  modalId: store.modalId
 })
 
 const mapDispatchToProps = dispatch => ({

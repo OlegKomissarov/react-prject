@@ -277,6 +277,7 @@ a {
       }
     }
     &--mobile {
+      font-size: $font-size-large;
       @include media-breakpoint-up($md) {
         display: none;
       }

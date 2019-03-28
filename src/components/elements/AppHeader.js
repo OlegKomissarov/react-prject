@@ -26,7 +26,7 @@ class AppHeader extends Component {
 }
 
 const mapStateToProps = store => ({
-  modalId: store.modalId.modalId
+  modalId: store.modalId
 })
 
 const mapDispatchToProps = dispatch => ({
