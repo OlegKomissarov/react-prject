@@ -1,5 +1,6 @@
 function indexFavourites() {
-  return JSON.parse(localStorage.getItem('favouriteMovies'))
+  let favouriteMovies = JSON.parse(localStorage.getItem('favouriteMovies'))
+  return favouriteMovies ? favouriteMovies : []
 }
 
 function getFavourite(id) {
