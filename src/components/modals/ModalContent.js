@@ -10,14 +10,13 @@ import Button from '../elements/Button'
 
 class ModalContent extends Component {
   changeFavourite = () => {
-    if (this.props.movie.favourite) {
-      api.removeFavourite(this.props.movie.id)
+    if (this.props.movie.get('favourite')) {
+      api.removeFavourite(this.props.movie.get('id'))
     } else {
       api.setFavourite(this.props.movie)
     }
-    let movie = Object.assign({}, this.props.movie)
-    movie.favourite = !movie.favourite
-    this.props.setModalMovieAction(movie)
+    const movieWithChangedFavourite = this.props.movie.set('favourite', !this.props.movie.get('favourite'))
+    this.props.setModalMovieAction(movieWithChangedFavourite)
   }
   static getUnfavouriteButtonContent() {
     if (window.innerWidth < 1024) {
@@ -32,10 +31,10 @@ class ModalContent extends Component {
     return 'Add to favourite'
   }
   getMovieTitleWithYear() {
-    return `${this.props.movie.original_title} (${moment(this.props.movie.release_date).format('YYYY')})`
+    return `${this.props.movie.get('original_title')} (${moment(this.props.movie.get('release_date')).format('YYYY')})`
   }
   getReleaseDate() {
-    return moment(this.props.movie.release_date).format('MMMM DD, YYYY')
+    return moment(this.props.movie.get('release_date')).format('MMMM DD, YYYY')
   }
   render() {
     const { movie } = this.props
@@ -44,12 +43,12 @@ class ModalContent extends Component {
         <img className="movie-modal__image"
              src={getPicture(movie)}
              alt="Not found pic"
-             title={movie.original_title}
+             title={movie.get('original_title')}
         />
         <div className="modal-content">
           <Button onClick={this.changeFavourite}
                   text={
-                    this.props.movie.favourite
+                    this.props.movie.get('favourite')
                       ? ModalContent.getUnfavouriteButtonContent()
                       : ModalContent.getAddFavouriteButtonContent()
                   }
@@ -66,7 +65,7 @@ class ModalContent extends Component {
                   Score:
                 </div>
                 <div className="modal-content__data-elem-text">
-                  {' ' + movie.vote_average}
+                  {' ' + movie.get('vote_average')}
                 </div>
               </div>
               <div className="modal-content__vertical-divider"/>
@@ -75,7 +74,7 @@ class ModalContent extends Component {
                   Language:
                 </div>
                 <div className="modal-content__data-elem-text">
-                  {' ' + movie.original_language}
+                  {' ' + movie.get('original_language')}
                 </div>
               </div>
               <div className="modal-content__vertical-divider"/>
@@ -93,7 +92,7 @@ class ModalContent extends Component {
             </div>
             <div className="modal-content__divider"/>
             <div className="modal-content__description">
-              {movie.overview}
+              {movie.get('overview')}
             </div>
             <div className="modal-content__divider"/>
           </div>

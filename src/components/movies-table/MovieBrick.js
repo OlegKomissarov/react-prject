@@ -4,7 +4,7 @@ import { getPicture } from '../../utils'
 
 class MovieBrick extends Component {
   openModal = () => {
-    this.props.openModal(this.props.movie.id)
+    this.props.openModal(this.props.movie.get('id'))
   }
   render() {
     const { movie } = this.props
@@ -14,7 +14,7 @@ class MovieBrick extends Component {
              className="movie-brick__image"
              src={getPicture(movie)}
              alt="Not found pic"
-             title={movie.original_title}
+             title={movie.get('original_title')}
         />
       </div>
     )

@@ -1,28 +1,20 @@
+import { List, fromJS } from 'immutable'
+
 function indexFavourites() {
   let favouriteMovies = JSON.parse(localStorage.getItem('favouriteMovies'))
-  return favouriteMovies ? favouriteMovies : []
+  return fromJS(favouriteMovies ? favouriteMovies : List())
 }
 
 function getFavourite(id) {
-  let favouriteMovies = JSON.parse(localStorage.getItem('favouriteMovies'))
-  if (favouriteMovies && favouriteMovies instanceof Array) {
-    return favouriteMovies.find(movie => movie.id === id)
-  }
+  return indexFavourites().find(movie => movie.get('id') === id)
 }
 
 function setFavourite(movie) {
-  let favouriteMovies = indexFavourites()
-  if (!favouriteMovies || !(favouriteMovies instanceof Array)) {
-    favouriteMovies = []
-  }
-  favouriteMovies.push(movie)
-  localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies))
+  localStorage.setItem('favouriteMovies', JSON.stringify(indexFavourites().push(movie)))
 }
 
 function removeFavourite(id) {
-  let favouriteMovies = indexFavourites()
-  favouriteMovies = favouriteMovies.filter(movie => movie.id !== id)
-  localStorage.setItem('favouriteMovies', JSON.stringify(favouriteMovies))
+  localStorage.setItem('favouriteMovies', JSON.stringify(indexFavourites().filter(movie => movie.get('id') !== id)))
 }
 
 export default {
