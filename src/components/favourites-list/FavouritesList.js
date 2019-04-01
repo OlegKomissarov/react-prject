@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { List } from 'immutable'
 import api from '../../api/localStorage'
+
 import MoviePreview from './MoviePreview'
 
 class FavouritesList extends Component {
   state = {
-    movies: [],
+    movies: List(),
     isLoading: false
   }
   componentDidMount() {
@@ -13,8 +15,8 @@ class FavouritesList extends Component {
     this.setState({ movies, isLoading: false })
   }
   getMoviesList() {
-    return this.state.movies.length
-      ? this.state.movies.map(movie => <MoviePreview movie={movie} key={movie.id}/>).reverse()
+    return this.state.movies.size
+      ? this.state.movies.map(movie => <MoviePreview movie={movie} key={movie.get('id')}/>).reverse()
       : <div>No favourite movies</div>
   }
   render() {

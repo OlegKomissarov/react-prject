@@ -9,7 +9,7 @@ class MoviePreview extends Component {
   }
   removeFromFavourite = () => {
     this.setState({ showPreview: false })
-    api.removeFavourite(this.props.movie.id)
+    api.removeFavourite(this.props.movie.get('id'))
   }
   returnFavourite = () => {
     this.setState({ showPreview: true })
@@ -27,7 +27,7 @@ class MoviePreview extends Component {
           <div className="movie-preview__content">
             <div className="movie-preview__header">
               <div className="movie-preview__title">
-                {movie.original_title}
+                {movie.get('original_title')}
               </div>
               <div className="movie-preview__button-container">
                 <Button onClick={this.removeFromFavourite}
@@ -38,7 +38,7 @@ class MoviePreview extends Component {
               </div>
             </div>
             <div className="movie-preview__description">
-              {movie.overview}
+              {movie.get('overview')}
             </div>
           </div>
         </div>

@@ -3,17 +3,15 @@ import config from '../../config'
 
 class Pagination extends Component {
 
-  state = { page: this.props.page }
-
   changePage(page) {
-    if (this.state.page !== page && page >= 1 && page <= config.pagesLength) {
+    if (this.props.page !== page && page >= 1 && page <= config.pagesLength) {
       this.setState({page})
       this.props.changePage(page)
     }
   }
 
   render() {
-    const { page } = this.state
+    const { page } = this.props
     return (
       <div className="pagination">
         <div className="pagination__block">

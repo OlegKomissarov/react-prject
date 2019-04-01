@@ -7,7 +7,7 @@ class ModalButtons extends Component {
     this.props.openModal(null)
   }
   nextModal = () => {
-    this.props.openModal(this.props.movie.nextMovieId)
+    this.props.openModal(this.props.movie.get('nextMovieId'))
   }
   render() {
     return (
