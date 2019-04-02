@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux'
-import { modalMovieReducer } from './modalMovie'
-import { modalIdReducer } from './modalMovie'
+import {
+  modalMovieReducer,
+  modalIdReducer,
+  moviesIsLoadingReducer,
+  moviesReducer
+} from './modalMovie'
 
 export const rootReducer = combineReducers({
   modalMovie: modalMovieReducer,
-  modalId: modalIdReducer
+  modalId: modalIdReducer,
+  moviesIsLoading: moviesIsLoadingReducer,
+  movies: moviesReducer
 })

@@ -7,10 +7,9 @@ import MoviePreview from './MoviePreview'
 class FavouritesList extends Component {
   state = {
     movies: List(),
-    isLoading: false
+    isLoading: true
   }
   componentDidMount() {
-    this.setState({ isLoading: true })
     let movies = api.indexFavourites()
     this.setState({ movies, isLoading: false })
   }

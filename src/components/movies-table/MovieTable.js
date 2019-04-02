@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { List, fromJS } from 'immutable'
-import { setModalMovie } from '../../actions/modalMovieActions'
-import { setModalId } from '../../actions/modalMovieActions'
-import config from '../../config'
+import { setModalId, setModalMovie, setMoviesIsLoading, fetchMoviesFromApi } from '../../actions/modalMovieActions'
 
 import MovieBrick from './MovieBrick'
 import Pagination from './Pagination'
@@ -14,23 +10,17 @@ import api from '../../api/localStorage'
 
 class MovieTable extends Component {
   state = {
-    movies: List(),
-    page: 1,
-    modalId: null,
-    isLoading: false
+    page: 1
   }
   componentDidMount() {
     this.changePage(this.state.page)
   }
   changePage = page => {
-    this.setState({ page, isLoading: true })
-    axios.get(config.moviesUrl + '&page=' + page)
-      .then(movies => {
-        this.setState({ movies: fromJS(movies.data.results), isLoading: false })
-      })
+    this.setState({ page })
+    this.props.setMoviesIsLoadingAction(true)
+    this.props.fetchMoviesFromApiAction(page)
   }
   openModal = modalId => {
-    this.setState({ modalId })
     this.props.setModalIdAction(modalId)
     if (modalId) {
       this.getMovieForModal(modalId)
@@ -38,12 +28,12 @@ class MovieTable extends Component {
   }
   getMovieForModal(modalId) {
     let nextMovieId = null
-    let movie = this.state.movies.find((movie, index) => {
+    let movie = this.props.movies.find((movie, index) => {
       if (movie.get('id') === modalId) {
-        if (this.state.movies.get(index + 1)) {
-          nextMovieId = this.state.movies.get(index + 1).get('id')
+        if (this.props.movies.get(index + 1)) {
+          nextMovieId = this.props.movies.get(index + 1).get('id')
         } else {
-          nextMovieId = this.state.movies.get(0).get('id')
+          nextMovieId = this.props.movies.get(0).get('id')
         }
         return true
       }
@@ -55,15 +45,15 @@ class MovieTable extends Component {
     this.props.setModalMovieAction(movieWithFavourite)
   }
   getMovieBricks() {
-    return this.state.movies.size
-      ? this.state.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.get('id')}/>)
+    return this.props.movies.size
+      ? this.props.movies.map(movie => <MovieBrick openModal={this.openModal} movie={movie} key={movie.get('id')}/>)
       : <div className="content-not-found">Movies not found</div>
   }
   render() {
     return (
       <div className="movie-table">
         {
-          this.state.isLoading ? 'Loading...' :
+          this.props.isLoading ? 'Loading...' :
           <div>
             <div className="movie-table__grid">
               {this.getMovieBricks()}
@@ -81,11 +71,15 @@ class MovieTable extends Component {
 }
 
 const mapStateToProps = store => ({
-  modalId: store.modalId
+  modalId: store.modalId,
+  isLoading: store.moviesIsLoading,
+  movies: store.movies
 })
 
 const mapDispatchToProps = dispatch => ({
   setModalMovieAction: bindActionCreators(setModalMovie, dispatch),
+  setMoviesIsLoadingAction: bindActionCreators(setMoviesIsLoading, dispatch),
+  fetchMoviesFromApiAction: page => dispatch(fetchMoviesFromApi(page)),
   setModalIdAction: bindActionCreators(setModalId, dispatch)
 })
 
