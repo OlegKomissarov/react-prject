@@ -1,0 +1,53 @@
+@import 'variables.scss';
+
+.movie-preview {
+  display: flex;
+  color: $color-grey-800;
+  @include stack-space($space-xx-large);
+  &__image {
+    width: 40%;
+    height: 60%;
+    border-radius: $border-radius-base;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    @include inline-space($space-x-large);
+    @include media-breakpoint-up($md) {
+      width: 20%;
+      height: 30%;
+      @include inline-space($space-xxx-large);
+    }
+  }
+  &__content {
+    flex: 1;
+  }
+  &__header {
+    display: flex;
+    width: 100%;
+    @include stack-space($space-large);
+    @include media-breakpoint-down($md) {
+      flex-direction: column;
+    }
+    @include media-breakpoint-up($md) {
+      justify-content: space-between;
+      align-items: center;
+      @include stack-space($space-xx-large);
+    }
+  }
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    @include inline-space($space-large);
+    @include media-breakpoint-down($md) {
+      @include stack-space($space-small);
+    }
+    @include media-breakpoint-up($md) {
+      font-size: $font-size-x-large;
+      @include inline-space($space-x-large);
+    }
+  }
+  &__button-container {
+    display: flex;
+  }
+  &__button {
+    color: $color-grey-800;
+  }
+}

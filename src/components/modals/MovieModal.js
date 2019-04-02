@@ -24,7 +24,7 @@ class MovieModal extends Component {
     return (
       <div className="movie-modal">
         <ModalButtons openModal={this.openModal} movie={movie}/>
-        <ModalContent movie={movie} className="movie-modal__content"/>
+        <ModalContent movie={movie}/>
       </div>
     )
   }

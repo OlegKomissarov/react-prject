@@ -1,0 +1,51 @@
+@import 'variables.scss';
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-large $space-xx-large;
+  background-color: $color-grey-800;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  &__image {
+    width: $logo-size;
+    height: $logo-size;
+    background-color: transparent;
+    margin-right: $space-base;
+  }
+  &__text {
+    color: $color-grey-200;
+  }
+}
+
+.button {
+  text-decoration: none;
+  padding: $space-small;
+  border-radius: $border-radius-base;
+  border: 1px solid $color-grey-800;
+  color: $color-grey-800;
+  cursor: pointer;
+  &--white {
+    border: 2px solid $color-grey-400;
+    color: $color-grey-200;
+  }
+}
+
+.content-header {
+  color: $color-grey-400;
+  font-weight: $font-weight-bold;
+  margin-bottom: $space-large;
+}
+
+.content-not-found {
+  padding: $space-small;
+}

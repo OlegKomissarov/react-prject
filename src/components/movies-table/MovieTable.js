@@ -51,11 +51,11 @@ class MovieTable extends Component {
   }
   render() {
     return (
-      <div className="movie-table">
+      <div className="movies-table">
         {
           this.props.isLoading ? 'Loading...' :
           <div>
-            <div className="movie-table__grid">
+            <div className="movies-table__grid">
               {this.getMovieBricks()}
             </div>
             <Pagination changePage={this.changePage} page={this.state.page}/>

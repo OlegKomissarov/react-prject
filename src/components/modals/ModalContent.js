@@ -8,6 +8,8 @@ import { setModalMovie } from '../../actions/modalMovieActions'
 
 import Button from '../elements/Button'
 
+const SMALL_SCREEN_WIDTH = 1024
+
 class ModalContent extends Component {
   changeFavourite = () => {
     if (this.props.movie.get('favourite')) {
@@ -19,13 +21,13 @@ class ModalContent extends Component {
     this.props.setModalMovieAction(movieWithChangedFavourite)
   }
   static getUnfavouriteButtonContent() {
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth <= SMALL_SCREEN_WIDTH) {
       return <img src="star-active.png" alt="Not found" className="modal-content__star-icon"/>
     }
     return 'Unfavourite'
   }
   static getAddFavouriteButtonContent() {
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth <= SMALL_SCREEN_WIDTH) {
       return <img src="star.png" alt="Not found" className="modal-content__star-icon"/>
     }
     return 'Add to favourite'
@@ -39,63 +41,70 @@ class ModalContent extends Component {
   render() {
     const { movie } = this.props
     return (
-      <div className="movie-modal__container">
-        <img className="movie-modal__image"
-             src={getPicture(movie)}
-             alt="Not found pic"
-             title={movie.get('original_title')}
-        />
-        <div className="modal-content">
-          <Button onClick={this.changeFavourite}
-                  text={
-                    this.props.movie.get('favourite')
-                      ? ModalContent.getUnfavouriteButtonContent()
-                      : ModalContent.getAddFavouriteButtonContent()
-                  }
-                  white
-                  className="modal-content__button"
+      <div className="modal-content">
+        <div className="modal-content__top-block">
+          <img className="modal-content__image"
+               src={getPicture(movie)}
+               alt="Not found pic"
+               title={movie.get('original_title')}
           />
-          <div className="modal-content__container">
+          <div className="modal-content__top-right-block">
+            <Button onClick={this.changeFavourite}
+                    text={
+                      this.props.movie.get('favourite')
+                        ? ModalContent.getUnfavouriteButtonContent()
+                        : ModalContent.getAddFavouriteButtonContent()
+                    }
+                    white
+                    className="modal-content__button"
+            />
             <div className="modal-content__title modal-content__title--desktop">
               {this.getMovieTitleWithYear()}
             </div>
-            <div className="modal-content__data">
-              <div className="modal-content__data-elem">
-                <div className="modal-content__data-elem-label">
+            <div className="modal-content__movie-info">
+              <div className="modal-content__movie-info-elem">
+                <div className="modal-content__movie-info-elem-label">
                   Score:
                 </div>
-                <div className="modal-content__data-elem-text">
+                <div className="modal-content__movie-info-elem-text">
                   {' ' + movie.get('vote_average')}
                 </div>
               </div>
               <div className="modal-content__vertical-divider"/>
-              <div className="modal-content__data-elem">
-                <div className="modal-content__data-elem-label">
+              <div className="modal-content__movie-info-elem">
+                <div className="modal-content__movie-info-elem-label">
                   Language:
                 </div>
-                <div className="modal-content__data-elem-text">
+                <div className="modal-content__movie-info-elem-text">
                   {' ' + movie.get('original_language')}
                 </div>
               </div>
               <div className="modal-content__vertical-divider"/>
-              <div className="modal-content__data-elem">
-                <div className="modal-content__data-elem-label">
+              <div className="modal-content__movie-info-elem">
+                <div className="modal-content__movie-info-elem-label">
                   Release Date:
                 </div>
-                <div className="modal-content__data-elem-text">
+                <div className="modal-content__movie-info-elem-text">
                   {' ' + this.getReleaseDate()}
                 </div>
               </div>
             </div>
-            <div className="modal-content__title modal-content__title--mobile">
-              {this.getMovieTitleWithYear()}
-            </div>
-            <div className="modal-content__divider"/>
-            <div className="modal-content__description">
+            <div className="modal-content__divider modal-content__divider--desktop"/>
+            <div className="modal-content__description modal-content__description--desktop">
               {movie.get('overview')}
             </div>
-            <div className="modal-content__divider"/>
+            <div className="modal-content__divider modal-content__divider--desktop"/>
           </div>
+        </div>
+        <div className="modal-content__bottom-block">
+          <div className="modal-content__title">
+            {this.getMovieTitleWithYear()}
+          </div>
+          <div className="modal-content__divider"/>
+          <div className="modal-content__description">
+            {movie.get('overview')}
+          </div>
+          <div className="modal-content__divider"/>
         </div>
       </div>
     )
