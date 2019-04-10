@@ -30,6 +30,8 @@ class MovieModal extends Component {
   }
 }
 
-const mapStateToProps = store => store.modalMovie
+const mapStateToProps = store => ({
+  movie: store.modalMovie
+})
 
 export default connect(mapStateToProps)(MovieModal)

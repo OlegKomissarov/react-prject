@@ -4,7 +4,7 @@ import {
   modalIdReducer,
   moviesIsLoadingReducer,
   moviesReducer
-} from './modalMovie'
+} from './movieReducers'
 
 export const rootReducer = combineReducers({
   modalMovie: modalMovieReducer,

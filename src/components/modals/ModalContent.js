@@ -111,7 +111,9 @@ class ModalContent extends Component {
   }
 }
 
-const mapStateToProps = store => store.modalMovie
+const mapStateToProps = store => ({
+  movie: store.modalMovie
+})
 
 const mapDispatchToProps = dispatch => ({
   setModalMovieAction: bindActionCreators(setModalMovie, dispatch)
