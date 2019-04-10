@@ -70,19 +70,16 @@ class MovieTable extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  console.log(store)
-  return {
-    modalId: store.modalId,
-    isLoading: store.moviesIsLoading,
-    movies: store.movies
-  }
-}
+const mapStateToProps = store => ({
+  modalId: store.modalId,
+  isLoading: store.moviesIsLoading,
+  movies: store.movies
+})
 
 const mapDispatchToProps = dispatch => ({
   setModalMovieAction: bindActionCreators(setModalMovie, dispatch),
   setMoviesIsLoadingAction: bindActionCreators(setMoviesIsLoading, dispatch),
-  fetchMoviesFromApiAction: page => dispatch(fetchMoviesFromApi(page)),
+  fetchMoviesFromApiAction: bindActionCreators(fetchMoviesFromApi, dispatch),
   setModalIdAction: bindActionCreators(setModalId, dispatch)
 })
 
