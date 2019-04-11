@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { getPicture } from '../../utils'
 
@@ -19,6 +20,11 @@ class MovieBrick extends Component {
       </div>
     )
   }
+}
+
+MovieBrick.propTypes = {
+  movie: PropTypes.object.isRequired,
+  openModal: PropTypes.func.isRequired
 }
 
 export default MovieBrick

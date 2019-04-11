@@ -1,3 +1,4 @@
+import { List, Map } from 'immutable'
 import { createReducer } from './storeUtils'
 import {
   SET_MODAL_MOVIE,
@@ -6,7 +7,10 @@ import {
   SET_MODAL_ID
 } from '../actions/modalMovieActions'
 
-const initialState = null
+const initialModalId = null
+const initialMoviesIsLoading = false
+const initialMovies = List()
+const initialModalMovie = Map()
 
 const getData = (state, action) => action.payload
 
@@ -17,18 +21,18 @@ const getData = (state, action) => action.payload
 //   [SET_MOVIES]: getData
 // })
 
-export const modalIdReducer = createReducer(initialState, {
+export const modalIdReducer = createReducer(initialModalId, {
   [SET_MODAL_ID]: getData
 })
 
-export const moviesIsLoadingReducer = createReducer(initialState, {
+export const moviesIsLoadingReducer = createReducer(initialMoviesIsLoading, {
   [SET_MOVIES_IS_LOADING]: getData
 })
 
-export const moviesReducer = createReducer(initialState, {
+export const moviesReducer = createReducer(initialMovies, {
   [SET_MOVIES]: getData
 })
 
-export const modalMovieReducer = createReducer(initialState, {
+export const modalMovieReducer = createReducer(initialModalMovie, {
   [SET_MODAL_MOVIE]: getData
 })

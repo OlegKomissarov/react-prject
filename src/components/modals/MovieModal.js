@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import ModalButtons from './ModalButtons'
 import ModalContent from './ModalContent'
+import PropTypes from 'prop-types'
 
 class MovieModal extends Component {
   componentDidMount() {
@@ -28,6 +29,11 @@ class MovieModal extends Component {
       </div>
     )
   }
+}
+
+MovieModal.propTypes = {
+  movie: PropTypes.object.isRequired,
+  openModal: PropTypes.func.isRequired
 }
 
 const mapStateToProps = store => ({

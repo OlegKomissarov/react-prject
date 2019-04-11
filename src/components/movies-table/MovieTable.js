@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setModalId, setModalMovie, setMoviesIsLoading, fetchMoviesFromApi } from '../../actions/modalMovieActions'
@@ -50,10 +51,11 @@ class MovieTable extends Component {
       : <div className="content-not-found">Movies not found</div>
   }
   render() {
+    const { isLoading, modalId } = this.props
     return (
       <div className="movies-table">
         {
-          this.props.isLoading ? 'Loading...' :
+          isLoading ? 'Loading...' :
           <div>
             <div className="movies-table__grid">
               {this.getMovieBricks()}
@@ -62,7 +64,7 @@ class MovieTable extends Component {
           </div>
         }
         {
-          this.props.modalId &&
+          modalId > 0 &&
           <MovieModal openModal={this.openModal}/>
         }
       </div>
@@ -73,7 +75,7 @@ class MovieTable extends Component {
 const mapStateToProps = store => ({
   modalId: store.modalId,
   isLoading: store.moviesIsLoading,
-  movies: store.movies ? store.movies : []
+  movies: store.movies
 })
 
 // const mapStateToProps = store => {
@@ -84,6 +86,16 @@ const mapStateToProps = store => ({
 //     movies: store.movies ? store.movies : []
 //   }
 // }
+
+MovieTable.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  movies: PropTypes.object.isRequired,
+  modalId: PropTypes.number,
+  setModalMovieAction: PropTypes.func.isRequired,
+  setMoviesIsLoadingAction: PropTypes.func.isRequired,
+  fetchMoviesFromApiAction: PropTypes.func.isRequired,
+  setModalIdAction: PropTypes.func.isRequired
+}
 
 const mapDispatchToProps = dispatch => ({
   setModalMovieAction: bindActionCreators(setModalMovie, dispatch),

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { getPicture } from '../../utils'
+import api from '../../api/localStorage'
+
 import Button from '../elements/Button'
-import api from "../../api/localStorage"
 
 class MoviePreview extends Component {
   state = {
@@ -51,6 +53,10 @@ class MoviePreview extends Component {
         </div>
     )
   }
+}
+
+MoviePreview.propTypes = {
+  movie: PropTypes.object.isRequired
 }
 
 export default MoviePreview

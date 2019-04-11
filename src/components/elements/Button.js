@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Button extends Component {
   render() {
@@ -11,6 +12,12 @@ class Button extends Component {
       </div>
     )
   }
+}
+
+Button.propTypes = {
+  text: PropTypes.string,
+  white: PropTypes.bool,
+  className: PropTypes.string
 }
 
 export default Button

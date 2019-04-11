@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class ContentHeader extends Component {
   render() {
@@ -9,6 +10,10 @@ class ContentHeader extends Component {
       </div>
     )
   }
+}
+
+ContentHeader.propTypes = {
+  text: PropTypes.string
 }
 
 export default ContentHeader

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { setModalId } from '../../actions/modalMovieActions'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 class AppHeader extends Component {
   closeModal = () => {
@@ -23,6 +24,11 @@ class AppHeader extends Component {
       </div>
     )
   }
+}
+
+AppHeader.propTypes = {
+  modalId: PropTypes.number,
+  setModalMovieAction: PropTypes.func.isRequired
 }
 
 const mapStateToProps = store => ({

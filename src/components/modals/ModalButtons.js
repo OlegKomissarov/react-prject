@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Button from '../elements/Button'
+import PropTypes from 'prop-types'
 
 class ModalButtons extends Component {
   closeModal = () => {
@@ -21,6 +22,11 @@ class ModalButtons extends Component {
       </div>
     )
   }
+}
+
+ModalButtons.propTypes = {
+  movie: PropTypes.object.isRequired,
+  openModal: PropTypes.func.isRequired
 }
 
 export default ModalButtons

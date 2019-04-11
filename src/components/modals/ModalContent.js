@@ -7,6 +7,7 @@ import { getPicture } from '../../utils'
 import { setModalMovie } from '../../actions/modalMovieActions'
 
 import Button from '../elements/Button'
+import PropTypes from 'prop-types'
 
 const SMALL_SCREEN_WIDTH = 1024
 
@@ -51,7 +52,7 @@ class ModalContent extends Component {
           <div className="modal-content__top-right-block">
             <Button onClick={this.changeFavourite}
                     text={
-                      this.props.movie.get('favourite')
+                      movie.get('favourite')
                         ? ModalContent.getUnfavouriteButtonContent()
                         : ModalContent.getAddFavouriteButtonContent()
                     }
@@ -109,6 +110,11 @@ class ModalContent extends Component {
       </div>
     )
   }
+}
+
+ModalContent.propTypes = {
+  movie: PropTypes.object.isRequired,
+  setModalMovieAction: PropTypes.func.isRequired
 }
 
 const mapStateToProps = store => ({
