@@ -6,23 +6,29 @@ import {
   SET_MODAL_ID
 } from '../actions/modalMovieActions'
 
-const initialMovieState = null
-const initialIdState = null
-const initialMoviesState = []
-const initialIsLoading = false
+const initialState = null
 
-export const modalMovieReducer = createReducer(initialMovieState, {
-  [SET_MODAL_MOVIE]: (state, action) => action.payload
+const getData = (state, action) => action.payload
+
+// export const reducer = createReducer(initialState, {
+//   [SET_MODAL_MOVIE]: getData,
+//   [SET_MODAL_ID]: getData,
+//   [SET_MOVIES_IS_LOADING]: getData,
+//   [SET_MOVIES]: getData
+// })
+
+export const modalIdReducer = createReducer(initialState, {
+  [SET_MODAL_ID]: getData
 })
 
-export const modalIdReducer = createReducer(initialIdState, {
-  [SET_MODAL_ID]: (state, action) => action.payload
+export const moviesIsLoadingReducer = createReducer(initialState, {
+  [SET_MOVIES_IS_LOADING]: getData
 })
 
-export const moviesIsLoadingReducer = createReducer(initialIsLoading, {
-  [SET_MOVIES_IS_LOADING]: (state, action) => action.payload
+export const moviesReducer = createReducer(initialState, {
+  [SET_MOVIES]: getData
 })
 
-export const moviesReducer = createReducer(initialMoviesState, {
-  [SET_MOVIES]: (state, action) => action.payload
+export const modalMovieReducer = createReducer(initialState, {
+  [SET_MODAL_MOVIE]: getData
 })

@@ -76,6 +76,15 @@ const mapStateToProps = store => ({
   movies: store.movies
 })
 
+// const mapStateToProps = store => {
+//   console.log(store)
+//   return {
+//     modalId: store.modalId,
+//     isLoading: store.moviesIsLoading,
+//     movies: store.movies ? store.movies : []
+//   }
+// }
+
 const mapDispatchToProps = dispatch => ({
   setModalMovieAction: bindActionCreators(setModalMovie, dispatch),
   setMoviesIsLoadingAction: bindActionCreators(setMoviesIsLoading, dispatch),

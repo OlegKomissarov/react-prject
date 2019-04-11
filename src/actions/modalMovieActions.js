@@ -7,43 +7,33 @@ export const SET_MODAL_ID = 'SET_MODAL_ID'
 export const SET_MOVIES_IS_LOADING = 'SET_MOVIES_IS_LOADING'
 export const SET_MOVIES = 'SET_MOVIES'
 
-export function setModalMovie(movie) {
-  return {
+export const setModalMovie = movie => ({
     type: SET_MODAL_MOVIE,
     payload: movie
-  }
-}
+})
 
-export function setModalId(id) {
-  return {
+export const setModalId = id => ({
     type: SET_MODAL_ID,
     payload: id
-  }
-}
+})
 
-export function setMoviesIsLoading(moviesIsLoading) {
-  return {
+export const setMoviesIsLoading = moviesIsLoading => ({
     type: SET_MOVIES_IS_LOADING,
     payload: moviesIsLoading
-  }
-}
+})
 
-export function setMovies(id) {
-  return {
-    type: SET_MOVIES,
-    payload: id
-  }
-}
+export const setMovies = movies => ({
+  type: SET_MOVIES,
+  payload: movies
+})
 
-export function fetchMoviesFromApi(page) {
-  return dispatch => {
-    axios.get(config.moviesUrl + '&page=' + page)
-      .then(movies => {
-        dispatch(setMoviesIsLoading(false))
-        dispatch(setMovies(fromJS(movies.data.results)))
-      })
-      .catch(error => {
-        console.log('Error with fetching movies', error)
-      })
-  }
-}
+export const fetchMoviesFromApi = page => (dispatch => {
+  axios.get(config.moviesUrl + '&page=' + page)
+    .then(movies => {
+      dispatch(setMoviesIsLoading(false))
+      dispatch(setMovies(fromJS(movies.data.results)))
+    })
+    .catch(error => {
+      console.log('Error with fetching movies', error)
+    })
+})
