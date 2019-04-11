@@ -73,7 +73,7 @@ class MovieTable extends Component {
 const mapStateToProps = store => ({
   modalId: store.modalId,
   isLoading: store.moviesIsLoading,
-  movies: store.movies
+  movies: store.movies ? store.movies : []
 })
 
 // const mapStateToProps = store => {
