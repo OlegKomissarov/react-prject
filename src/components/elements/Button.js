@@ -6,7 +6,7 @@ class Button extends Component {
     const { text, white, className } = this.props
     return (
       <div onClick={this.props.onClick}
-           className={`button ${white && 'button--white'} ${className}`}
+           className={`button${white ? ' button--white' : ''}${className ? ' ' + className : ''}`}
       >
         {text}
       </div>

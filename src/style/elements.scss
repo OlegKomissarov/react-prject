@@ -28,14 +28,13 @@
 }
 
 .button {
-  text-decoration: none;
   padding: $space-small;
   border-radius: $border-radius-base;
-  border: 1px solid $color-grey-800;
+  border: 2px solid $color-grey-400;
   color: $color-grey-800;
+  text-decoration: none;
   cursor: pointer;
   &--white {
-    border: 2px solid $color-grey-400;
     color: $color-grey-200;
   }
 }

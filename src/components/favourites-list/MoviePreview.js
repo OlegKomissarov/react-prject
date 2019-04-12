@@ -34,8 +34,6 @@ class MoviePreview extends Component {
               <div className="movie-preview__button-container">
                 <Button onClick={this.removeFromFavourite}
                         text="Unfavourite"
-                        white
-                        className="movie-preview__button"
                 />
               </div>
             </div>

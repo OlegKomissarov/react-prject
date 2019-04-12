@@ -9,6 +9,9 @@
   height: calc(100vh - (#{$logo-size} + #{$space-large} * 2));
   background-color: rgba(0,0,0,0.95);
   color: $color-grey-200;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  &::-webkit-scrollbar { width: 0; }
 }
 
 .modal-buttons {
